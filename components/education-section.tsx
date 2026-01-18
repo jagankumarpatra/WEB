@@ -51,7 +51,7 @@ export function EducationSection() {
           <div className="flex items-center gap-3 rounded-xl bg-gradient-to-br from-primary/10 to-primary/5 p-4 border border-primary/20">
             <Award className="h-8 w-8 text-primary" />
             <div>
-              <p className="text-2xl font-bold text-gradient">9.35</p>
+              <p className="text-2xl font-bold text-white">9.35</p>
               <p className="text-xs text-muted-foreground">CGPA / 10.0</p>
             </div>
           </div>

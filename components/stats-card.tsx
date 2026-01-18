@@ -36,7 +36,7 @@ export function StatsCard({
         <Icon className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
       </div>
       <div>
-        <span className="text-xl sm:text-2xl font-black text-gradient">{value}</span>
+        <span className="text-xl sm:text-2xl font-black text-white">{value}</span>
         <span className="block text-xs text-muted-foreground mt-0.5">{label}</span>
       </div>
     </div>

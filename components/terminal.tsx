@@ -106,7 +106,7 @@ export function TerminalComponent() {
   }
 
   return (
-    <div className="glass rounded-2xl overflow-hidden border border-border/50">
+    <div className="glass glass-hover rounded-2xl overflow-hidden border border-border/50 transition-all duration-500">
       {/* Terminal Header */}
       <div className="flex items-center gap-3 border-b border-border/50 bg-secondary/30 px-4 py-3">
         <div className="flex gap-2">

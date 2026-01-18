@@ -25,9 +25,18 @@ export function LeetCodeStats() {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const response = await fetch("https://leetcode-stats-api.herokuapp.com/patrajagankumar")
+        const response = await fetch("/api/leetcode-stats")
         const data = await response.json()
+        console.log("Received from API:", data)
+        
         if (data.status === "success") {
+          console.log("✅ Real data from LeetCode API:")
+          console.log("   Total Solved (ALL):", data.totalSolved)
+          console.log("   Easy:", data.easySolved)
+          console.log("   Medium:", data.mediumSolved)
+          console.log("   Hard:", data.hardSolved)
+          console.log("   Source: acStats[difficulty='All'].count")
+          
           setStats({
             totalSolved: data.totalSolved || 0,
             easySolved: data.easySolved || 0,
@@ -35,11 +44,14 @@ export function LeetCodeStats() {
             hardSolved: data.hardSolved || 0,
             ranking: data.ranking || 0,
             acceptanceRate: data.acceptanceRate || 0,
-            contestRating: 1520,
-            topPercentage: 48.07,
+            contestRating: data.contestRating || 1520,
+            topPercentage: data.topPercentage || 48.07,
           })
+        } else {
+          throw new Error(data.message || "API returned non-success status")
         }
       } catch (error) {
+        console.error("❌ Failed to fetch LeetCode stats, using fallback data:", error)
         setStats({
           totalSolved: 150,
           easySolved: 70,

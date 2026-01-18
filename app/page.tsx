@@ -3,23 +3,23 @@ import { AboutSection } from "@/components/about-section"
 import { ExperienceSection } from "@/components/experience-section"
 import { ProjectsSection } from "@/components/projects-section"
 import { SkillsSection } from "@/components/skills-section"
-import { EducationSection } from "@/components/education-section"
 import { ContactSection } from "@/components/contact-section"
-import { ThemeToggle } from "@/components/theme-toggle"
 import { StatsCard } from "@/components/stats-card"
 import { CursorSpotlight } from "@/components/cursor-spotlight"
 import { FloatingNavbar } from "@/components/floating-navbar"
 import { TerminalComponent } from "@/components/terminal"
 import { LeetCodeStats } from "@/components/leetcode-stats"
-import { QuoteOfDay } from "@/components/quote-of-day"
-import { VisitorCounter } from "@/components/visitor-counter"
+import { ScrollToTop } from "@/components/scroll-to-top"
+import { AiAssistant } from "@/components/ai-assistant"
+
 
 export default function ResumePage() {
   return (
     <div className="relative min-h-screen overflow-hidden bg-background noise-overlay">
       <CursorSpotlight />
       <FloatingNavbar />
-      <ThemeToggle />
+      <ScrollToTop />
+      <AiAssistant />
 
       {/* Premium animated background */}
       <div className="pointer-events-none fixed inset-0 overflow-hidden">
@@ -71,16 +71,9 @@ export default function ResumePage() {
               <LeetCodeStats />
             </div>
 
-            {/* Quote + Visitor Counter Row */}
-            <div className="grid gap-6 sm:grid-cols-2 lg:gap-8">
-              <QuoteOfDay />
-              <VisitorCounter />
-            </div>
-
             <ExperienceSection />
             <ProjectsSection />
             <SkillsSection />
-            <EducationSection />
             <ContactSection />
           </div>
         </main>

@@ -20,6 +20,7 @@ const experiences = [
     ],
     skills: ["Node.js", "TypeScript", "MongoDB", "API Development"],
     current: true,
+    isLeft: true,
   },
   {
     period: "Jun 2024 — Oct 2025",
@@ -36,6 +37,7 @@ const experiences = [
     ],
     skills: ["Flutter", "Dart", "Firebase", "REST APIs", "Payment Gateway"],
     current: false,
+    isLeft: false,
   },
 ]
 
@@ -44,7 +46,7 @@ export function ExperienceSection() {
 
   return (
     <section ref={ref} id="experience" className="scroll-mt-24">
-      <div className="mb-8 flex items-center gap-3">
+      <div className="mb-12 flex items-center gap-3">
         <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/20">
           <Briefcase className="h-6 w-6 text-primary" />
         </div>
@@ -54,78 +56,106 @@ export function ExperienceSection() {
         </div>
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-2">
-        {experiences.map((exp, index) => (
-          <div
-            key={index}
-            className="glass glass-hover card-premium group relative overflow-hidden rounded-2xl p-5 sm:p-6 transition-all duration-500"
-            style={{
-              opacity: isVisible ? 1 : 0,
-              transform: isVisible ? "translateY(0)" : "translateY(30px)",
-              transitionDelay: `${index * 150}ms`,
-            }}
-          >
-            {/* Top gradient line */}
-            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+      {/* Timeline */}
+      <div className="relative">
+        {/* Center line */}
+        <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary/20 via-primary/50 to-primary/20 -translate-x-1/2" />
 
-            {/* Current indicator */}
-            {exp.current && (
-              <div className="absolute right-4 top-4 flex items-center gap-2">
-                <span className="text-xs font-medium text-emerald-500 uppercase tracking-wider">Current</span>
-                <span className="relative flex h-2.5 w-2.5">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                  <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500" />
-                </span>
-              </div>
-            )}
-
-            {/* Header */}
-            <div className="flex flex-wrap items-center gap-2 mb-4">
-              <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-primary bg-primary/10 px-3 py-1 rounded-full">
-                <Calendar className="h-3 w-3" />
-                {exp.period}
-              </span>
-              <span className="text-xs text-muted-foreground">• {exp.duration}</span>
-            </div>
-
-            <h3 className="text-xl font-bold text-foreground mb-1">{exp.title}</h3>
-
-            <a
-              href={exp.companyUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-primary/80 hover:text-primary transition-colors mb-4"
-            >
-              <Building2 className="h-4 w-4" />
-              {exp.company}
-              <ArrowUpRight className="h-3 w-3 opacity-0 transition-all group-hover:opacity-100" />
-            </a>
-
-            <p className="text-sm text-muted-foreground leading-relaxed mb-4">{exp.description}</p>
-
-            {/* Key Highlights */}
-            <div className="mb-4 space-y-2">
-              {exp.highlights.map((highlight, i) => (
-                <div key={i} className="flex items-start gap-2 text-sm">
-                  <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary flex-shrink-0" />
-                  <span className="text-foreground/80">{highlight}</span>
-                </div>
-              ))}
-            </div>
-
-            <div className="flex flex-wrap gap-2">
-              {exp.skills.map((skill) => (
-                <Badge
-                  key={skill}
-                  variant="secondary"
-                  className="rounded-lg bg-secondary/80 px-3 py-1.5 text-xs font-medium text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors"
+        <div className="space-y-12">
+          {experiences.map((exp, index) => (
+            <div key={index} className={`flex gap-6 ${exp.isLeft ? "" : "flex-row-reverse"}`}>
+              {/* Content */}
+              <div className="w-1/2">
+                <div
+                  className="glass glass-hover card-premium group relative overflow-hidden rounded-2xl p-5 sm:p-6 transition-all duration-500"
+                  style={{
+                    opacity: isVisible ? 1 : 0,
+                    transform: isVisible
+                      ? "translateY(0)"
+                      : exp.isLeft
+                        ? "translateX(-30px)"
+                        : "translateX(30px)",
+                    transitionDelay: `${index * 150}ms`,
+                  }}
                 >
-                  {skill}
-                </Badge>
-              ))}
+                  {/* Top gradient line */}
+                  <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+
+                  {/* Current indicator */}
+                  {exp.current && (
+                    <div className="absolute -top-8 right-4 flex items-center gap-2">
+                      <span className="text-xs font-medium text-emerald-500 uppercase tracking-wider">Current</span>
+                      <span className="relative flex h-2.5 w-2.5">
+                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                        <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500" />
+                      </span>
+                    </div>
+                  )}
+
+                  {/* Header */}
+                  <div className="flex flex-wrap items-center gap-2 mb-4">
+                    <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-primary bg-primary/10 px-3 py-1 rounded-full">
+                      <Calendar className="h-3 w-3" />
+                      {exp.period}
+                    </span>
+                    <span className="text-xs text-muted-foreground">• {exp.duration}</span>
+                  </div>
+
+                  <h3 className="text-lg font-bold text-foreground mb-1">{exp.title}</h3>
+
+                  <a
+                    href={exp.companyUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-sm font-medium text-primary/80 hover:text-primary transition-colors mb-4"
+                  >
+                    <Building2 className="h-4 w-4" />
+                    {exp.company}
+                    <ArrowUpRight className="h-3 w-3 opacity-0 transition-all group-hover:opacity-100" />
+                  </a>
+
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-4">{exp.description}</p>
+
+                  {/* Key Highlights */}
+                  <div className="mb-4 space-y-2">
+                    {exp.highlights.map((highlight, i) => (
+                      <div key={i} className="flex items-start gap-2 text-sm">
+                        <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary flex-shrink-0" />
+                        <span className="text-foreground/80">{highlight}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="flex flex-wrap gap-2">
+                    {exp.skills.map((skill) => (
+                      <Badge
+                        key={skill}
+                        variant="secondary"
+                        className="rounded-lg bg-secondary/80 px-3 py-1.5 text-xs font-medium text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors"
+                      >
+                        {skill}
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Timeline dot */}
+              <div className="w-fit flex justify-center">
+                <div
+                  className="w-4 h-4 rounded-full bg-primary ring-4 ring-background absolute left-1/2 -translate-x-1/2 top-8"
+                  style={{
+                    opacity: isVisible ? 1 : 0,
+                    transition: `opacity 0.5s ease-out ${index * 150}ms`,
+                  }}
+                />
+              </div>
+
+              {/* Empty space for right side */}
+              <div className="w-1/2" />
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   )

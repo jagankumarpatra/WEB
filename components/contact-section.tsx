@@ -1,12 +1,29 @@
 "use client"
 
 import type React from "react"
+import { useEffect, useState } from "react"
 import { Mail, Phone, MapPin, Send, Linkedin, Github, Code2, MessageSquare } from "lucide-react"
 import { useScrollAnimation } from "@/hooks/use-scroll-animation"
 import { ContactForm } from "@/components/contact-form"
 
 export function ContactSection() {
   const { ref, isVisible } = useScrollAnimation()
+  const [visitorCount, setVisitorCount] = useState(0)
+  const [year, setYear] = useState(new Date().getFullYear())
+
+  useEffect(() => {
+    try {
+      // Update year
+      setYear(new Date().getFullYear())
+      // Update visitor count
+      const stored = localStorage.getItem("jagan-resume-visits")
+      const count = (stored ? parseInt(stored) : 0) + 1
+      localStorage.setItem("jagan-resume-visits", count.toString())
+      setVisitorCount(count)
+    } catch (e) {
+      console.log("Visitor count error:", e)
+    }
+  }, [])
 
   return (
     <section ref={ref} id="contact" className="scroll-mt-24">
@@ -29,7 +46,7 @@ export function ContactSection() {
 
             <h2 className="text-2xl font-bold sm:text-3xl">
               Got a project in mind? <br />
-              <span className="text-gradient">Let's talk!</span>
+              <span className="text-white">Let's talk!</span>
             </h2>
 
             <p className="text-muted-foreground leading-relaxed">
@@ -60,12 +77,18 @@ export function ContactSection() {
         </div>
       </div>
 
-      <footer className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border/30 pt-8 sm:flex-row">
-        <p className="text-sm text-muted-foreground">
-          Designed & Built by <span className="font-medium text-foreground">Jagan Kumar Patra</span>
-        </p>
+      <footer className="mt-6 flex items-center justify-center gap-2 border-t border-border/30 py-3 sm:py-4">
+        <div className="flex flex-wrap items-center justify-center gap-2 text-xs text-muted-foreground">
+          <p>
+            © <span className="font-medium text-foreground">{year}</span> <span className="font-medium text-foreground">Jagan Kumar Patra</span>
+          </p>
+          <span className="text-primary">✨</span>
+          <p className="inline-flex items-center gap-1">
+            <span className="font-semibold text-primary animate-pulse">{visitorCount.toLocaleString()}</span><span className="text-muted-foreground">magic visits</span>
+          </p>
+        </div>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3 ml-2 pl-2 border-l border-border/30">
           <FooterLink href="https://github.com/jagankumarpatra" icon={Github} label="GitHub" />
           <FooterLink href="https://www.linkedin.com/in/jagan-kumar-patra/" icon={Linkedin} label="LinkedIn" />
           <FooterLink href="https://leetcode.com/u/patrajagankumar/" icon={Code2} label="LeetCode" />

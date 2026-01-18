@@ -20,10 +20,12 @@ export function HeroSection() {
 
             <div className="relative">
               <div className="h-36 w-36 sm:h-44 sm:w-44 overflow-hidden rounded-full border-2 border-primary/40 p-1 sm:p-1.5 animate-border-glow">
-                <div className="h-full w-full rounded-full bg-gradient-to-br from-primary/30 via-card to-secondary flex items-center justify-center backdrop-blur-sm">
-                  <span className="text-5xl sm:text-6xl font-black text-gradient">JK</span>
-                </div>
-              </div>
+  <div className="h-full w-full rounded-full bg-gradient-to-br from-primary/20 via-card to-secondary/20 flex items-center justify-center backdrop-blur-sm">
+    <span className="text-5xl sm:text-6xl font-black text-white drop-shadow-lg">
+      JK
+    </span>
+  </div>
+</div>
               {/* Status badge */}
               <div className="absolute -bottom-2 sm:-bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-2 rounded-full bg-card/95 px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium backdrop-blur-md border border-primary/30 shadow-lg shadow-primary/10 whitespace-nowrap">
                 <span className="relative flex h-2 w-2 sm:h-2.5 sm:w-2.5">
@@ -43,10 +45,9 @@ export function HeroSection() {
                 <Sparkles className="h-3 w-3 sm:h-4 sm:w-4 animate-pulse" />
                 <span className={isTyping ? "typing-cursor" : ""}>{displayedText}</span>
               </div>
-
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black tracking-tight leading-tight">
-                Hi, I'm <span className="text-gradient block sm:inline">Jagan Kumar Patra</span>
-              </h1>
+<h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black tracking-tight leading-tight text-white">
+  Hi, I'm <span className="text-white block sm:inline">Jagan Kumar Patra</span>
+</h1>
 
               <p className="max-w-2xl text-base sm:text-lg lg:text-xl text-muted-foreground leading-relaxed">
                 I build <span className="text-foreground font-semibold">production-grade backend systems</span> with
@@ -56,7 +57,7 @@ export function HeroSection() {
 
               <div className="flex items-center justify-center gap-2 text-sm sm:text-base text-muted-foreground lg:justify-start">
                 <MapPin className="h-4 w-4 text-primary flex-shrink-0" />
-                <span>Bhubaneswar, Odisha, India</span>
+                <span>Hyderabad, India</span>
               </div>
             </div>
 
